@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - Cargas Sociales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Ejercicio 1: Cargas Sociales</h3>
+        <label for="salario">Salario Bruto:</label>
+        <input type="number" id="salario">
+        <button onclick="calcularSalario()">Calcular</button>
+        <p id="resultado1"></p>
+    </div>
+
+    <script>
+        function calcularSalario() {
+            let salario = parseFloat(document.getElementById("salario").value);
+            if (isNaN(salario) || salario <= 0) {
+                alert("Ingrese un salario válido.");
+                return;
+            }
+            
+            let cargasSociales = salario * 0.1049; // 10.49% CCSS
+            let impuestoRenta = 0;
+
+            if (salario > 941000) {
+                impuestoRenta = (salario - 941000) * 0.15; // 15% sobre el excedente
+            }
+            let salarioNeto = salario - cargasSociales - impuestoRenta;
+
+            document.getElementById("resultado1").innerHTML = `
+                Cargas Sociales: ₡${cargasSociales.toFixed(2)}<br>
+                Impuesto sobre la Renta: ₡${impuestoRenta.toFixed(2)}<br>
+                Salario Neto: ₡${salarioNeto.toFixed(2)}
+            `;
+        }
+    </script>
+
+</body>
+</html>
+----------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 - Manipulación del DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Ejercicio 3: Manipulación del DOM</h3>
+        <p id="parrafo">Este es un párrafo de prueba.</p>
+        <button onclick="cambiarTexto()">Cambiar Texto</button>
+    </div>
+
+    <script>
+        function cambiarTexto() {
+            document.getElementById("parrafo").innerHTML = "¡El contenido ha cambiado!";
+        }
+    </script>
+
+</body>
+</html>
+----------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 - Control de Flujo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Ejercicio 4: Estructura de Control de Flujo</h3>
+        <label for="edad">Ingresa tu edad:</label>
+        <input type="number" id="edad">
+        <button onclick="verificarEdad()">Verificar</button>
+        <p id="resultado2"></p>
+    </div>
+
+    <script>
+        function verificarEdad() {
+            let edad = parseInt(document.getElementById("edad").value);
+            let mensaje = (edad >= 18) ? "Eres mayor de edad" : "Eres menor de edad";
+            document.getElementById("resultado2").innerText = mensaje;
+        }
+    </script>
+
+</body>
+</html>
+----------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5 - Manipulación de Arreglos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Ejercicio 5: Manipulación de Arreglos</h3>
+        <div id="listaEstudiantes"></div>
+    </div>
+
+    <script>
+        const estudiantes = [
+            { nombre: "Jose", apellido: "Cascante", nota: 85 },
+            { nombre: "Ana", apellido: "Gómez", nota: 92 },
+            { nombre: "Carlos", apellido: "Ramírez", nota: 78 },
+            { nombre: "María", apellido: "Fernández", nota: 88 }
+        ];
+
+        function mostrarEstudiantes() {
+            let lista = document.getElementById("listaEstudiantes");
+            let sumaNotas = 0;
+            let contenido = "<ul>";
+
+            estudiantes.forEach(estudiante => {
+                contenido += `<li>${estudiante.nombre} ${estudiante.apellido} - Nota: ${estudiante.nota}</li>`;
+                sumaNotas += estudiante.nota;
+            });
+
+            let promedio = sumaNotas / estudiantes.length;
+            contenido += `</ul><p>Promedio de Notas: ${promedio.toFixed(2)}</p>`;
+            lista.innerHTML = contenido;
+        }
+
+        mostrarEstudiantes(); 
+    </script>
+
+</body>
+</html>
